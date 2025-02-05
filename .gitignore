@@ -1,0 +1,68 @@
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+
+# Directorios generados automáticamente
+/build/
+.gradle/
+.idea/
+captures/
+.externalNativeBuild/
+.cxx/
+local.properties
+
+# Configuración de usuario de Android Studio
+*.iml
+*.hprof
+*.log
+*.swp
+*.swo
+*.swn
+*.orig
+*.rej
+
+# Archivos de cache y dependencias
+/.gradle/
+/.gradle/
+/out/
+/build/
+/bin/
+/captures/
+/app/build/
+/android/app/build/
+/*.apk
+/*.aab
+
+# Archivos específicos de Gradle
+.gradle/
+/gradle/wrapper/gradle-wrapper.jar
+gradle.properties
+gradlew
+gradlew.bat
+
+# Archivos de configuración local
+/local.properties
+/key.properties
+*.keystore
+*.jks
+
+# Archivos de configuración de Compose y Jetpack
+/compose-snapshot-tests/
+
+# Configuración de usuarios para Android Studio
+/.idea/
+*.iws
+*.ipr
+*.iws
+
+# Configuración específica de versiones y cache de compilación
+/.idea/caches/
+/.idea/libraries/
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+
+# Archivos específicos de Firebase y Google Services
+/google-services.json
+/app/google-services.json
