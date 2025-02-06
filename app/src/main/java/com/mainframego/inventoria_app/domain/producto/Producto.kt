@@ -1,4 +1,4 @@
-package com.mainframego.inventoria_app.domain
+package com.mainframego.inventoria_app.domain.producto
 
 import com.google.gson.annotations.SerializedName
 
@@ -8,7 +8,7 @@ data class Producto (
     @SerializedName("nombre")
     val nombre:String,
     @SerializedName("precio")
-    val precio:Int,
+    val precio:Int?,
     @SerializedName("fecha_ingreso")
-    val fecha_ingreso:String
+    val fecha_ingreso:String?
 )

@@ -1,19 +1,14 @@
 package com.mainframego.inventoria_app.data
 
-import com.mainframego.inventoria_app.domain.Producto
-import com.mainframego.inventoria_app.domain.ProductoServices
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
+import com.mainframego.inventoria_app.domain.producto.Producto
+import com.mainframego.inventoria_app.domain.producto.ProductoServices
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object ProductoLocalDataSrc:ProductoServices {
-    private val  url = "http://10.0.2.2:3000/api/"
+object ProductoLocalDataSrc: ProductoServices {
 
-    private val retrofit = Retrofit.Builder()
-        .baseUrl(url)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
+    val retrofit = Conexion.retrofit
+
     private val services = retrofit.create(ProductoServices::class.java)
     override suspend fun getProducto(): ArrayList<Producto> {
         println("ARRANCANDO")

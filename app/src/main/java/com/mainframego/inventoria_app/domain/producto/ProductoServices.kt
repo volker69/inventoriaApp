@@ -1,4 +1,4 @@
-package com.mainframego.inventoria_app.domain
+package com.mainframego.inventoria_app.domain.producto
 
 import retrofit2.http.GET
 

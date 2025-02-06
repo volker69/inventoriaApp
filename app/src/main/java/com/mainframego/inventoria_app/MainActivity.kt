@@ -17,6 +17,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.mainframego.inventoria_app.data.ProductoLocalDataSrc
 import androidx.compose.runtime.LaunchedEffect
+import com.mainframego.inventoria_app.data.InventarioDetalleLocalDataSrc
+import com.mainframego.inventoria_app.data.InventarioLocalDataSrc
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,10 +26,12 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             InventoriaAppTheme {
-                val productoDataSrc = ProductoLocalDataSrc
+                //val productoDataSrc = ProductoLocalDataSrc
+                val inventarioDetalleDataSrc = InventarioDetalleLocalDataSrc
                 var text by remember { mutableStateOf(" ") }
                 LaunchedEffect(true) {
-                    val data = productoDataSrc.getProducto()
+                    val data =inventarioDetalleDataSrc.getInventarioDetalle() //productoDataSrc.getProducto()
+                    println(data)
                     data.forEach{
                         text = it.toString();
                     }
