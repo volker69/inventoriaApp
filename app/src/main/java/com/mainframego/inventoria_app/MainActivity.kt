@@ -17,8 +17,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.mainframego.inventoria_app.data.ProductoLocalDataSrc
 import androidx.compose.runtime.LaunchedEffect
-import com.mainframego.inventoria_app.data.InventarioDetalleLocalDataSrc
+import androidx.compose.runtime.produceState
 import com.mainframego.inventoria_app.data.InventarioLocalDataSrc
+import com.mainframego.inventoria_app.data.InventarioStockTotalDataSrc
+import com.mainframego.inventoria_app.data.TiendaDataSrc
+import com.mainframego.inventoria_app.domain.inventarioDetalle.InventarioDetalleTotalStock
+import com.mainframego.inventoria_app.domain.tienda.Tienda
+import com.mainframego.inventoria_app.presentations.home.HomeDataState
+import com.mainframego.inventoria_app.presentations.home.HomeScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,40 +32,27 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             InventoriaAppTheme {
-                //val productoDataSrc = ProductoLocalDataSrc
-                val inventarioDetalleDataSrc = InventarioDetalleLocalDataSrc
-                var text by remember { mutableStateOf(" ") }
-                LaunchedEffect(true) {
-                    val data =inventarioDetalleDataSrc.getInventarioDetalle() //productoDataSrc.getProducto()
-                    println(data)
-                    data.forEach{
-                        text = it.toString();
-                    }
+                val inventarioStockTotalDataSrc = InventarioStockTotalDataSrc
+
+                val data by produceState (initialValue = emptyList<Tienda>()) {
+                    value = TiendaDataSrc.getTiendas()//inventarioStockTotalDataSrc.getInventarioStockTotal()
                 }
 
-                Scaffold( modifier = Modifier.fillMaxSize() ) { innerPadding ->
-                    Greeting(
-                        name = text,
-                        modifier = Modifier.padding(innerPadding)
+
+
+                HomeScreen(
+                    modifier = Modifier,
+                    state = HomeDataState(title = "Lista Socursales",
+                        cardStores = data
+
                     )
-                }
+                )
+
+
+
             }
         }
     }
+
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = name,
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    InventoriaAppTheme {
-        Greeting("Android")
-    }
-}
