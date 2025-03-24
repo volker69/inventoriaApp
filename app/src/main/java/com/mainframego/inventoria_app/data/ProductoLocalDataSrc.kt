@@ -11,9 +11,7 @@ object ProductoLocalDataSrc: ProductoServices {
 
     private val services = retrofit.create(ProductoServices::class.java)
     override suspend fun getProducto(): ArrayList<Producto> {
-        println("ARRANCANDO")
         val response = services.getProducto()
-        println(response)
         return response
     }
 

@@ -7,10 +7,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -40,7 +42,9 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.mainframego.inventoria_app.InventoriaAppTheme
 import com.mainframego.inventoria_app.R
+import com.mainframego.inventoria_app.domain.lastProduct.LastProduct
 import com.mainframego.inventoria_app.domain.tienda.Tienda
+import com.mainframego.inventoria_app.presentations.home.components.LastProductCard
 import com.mainframego.inventoria_app.presentations.home.components.SectionTitle
 import com.mainframego.inventoria_app.presentations.home.components.StoreCard
 import com.mainframego.inventoria_app.presentations.home.providers.HomeScreenPreviewProvider
@@ -97,28 +101,54 @@ fun HomeScreen(
         },
         content = {
             paddingValues ->
-                LazyColumn( modifier = Modifier.padding( paddingValues = paddingValues )
-                    .padding(horizontal = 16.dp),
-                    verticalArrangement = Arrangement.spacedBy(
-                        8.dp
-                    )){
-                    stickyHeader {
-                        SectionTitle(
-                            modifier = Modifier
-                                .fillParentMaxWidth()
-                                .background(
-                                    color = MaterialTheme.colorScheme.surface
-                                ),
-                            title = stringResource(R.string.ultimos_Productos)
-                        )
-                    }
-                    items(state.cardStores, key = {
-                            tiendas->tiendas.tienda_id
-                    }){
-                        store->
-                        StoreCard(modifier=Modifier,tienda=store, onClickCard = {})
-                    }
-                }
+               Column (
+
+               ){
+                   LazyColumn( modifier = Modifier.padding( paddingValues = paddingValues )
+                       .padding(horizontal = 13.dp),
+                       verticalArrangement = Arrangement.spacedBy(5.dp
+                       )){
+                       stickyHeader {
+                           SectionTitle(
+                               modifier = Modifier
+                                   .fillParentMaxWidth()
+                                   .background(
+                                       color = MaterialTheme.colorScheme.surface
+                                   ),
+                               title = stringResource(R.string.soculsales)
+                           )
+                       }
+                       items(state.cardStores, key = {
+                               tiendas->tiendas.tienda_id
+                       }){
+                               store->
+                           StoreCard(modifier=Modifier,tienda=store, onClickCard = {})
+                       }
+                   }
+                   Box(){
+                       SectionTitle(
+                           modifier = Modifier
+                               .background(
+                                   color = MaterialTheme.colorScheme.surface
+                               )
+                               .padding(horizontal = 13.dp),
+                           title = stringResource(R.string.ultimos_Productos)
+                       )
+                       LazyRow( modifier = Modifier.padding( paddingValues = paddingValues )
+                           .padding(horizontal = 5.dp),
+                           horizontalArrangement = Arrangement.spacedBy(
+                               1.dp)) {
+                           stickyHeader {
+                           }
+                           items(state.cardLastProduct, key = {
+                                   lastProduct->lastProduct.inventario_id
+                           }){
+                                   lastProduct ->
+                               LastProductCard(modifier=Modifier,lastProduct=lastProduct)
+                           }
+                       }
+                   }
+               }
 
         },
         floatingActionButton = {
@@ -144,7 +174,7 @@ fun HomeScreenPreviewDark(
             state = HomeDataState(
                 title = state.title,
                 cardStores = state.cardStores ,
-                //cardLastProduc = state.lastProudc
+                cardLastProduct = state.cardLastProduct
             )
         )
     }
@@ -162,7 +192,8 @@ fun HomeScreenPreviewLight(
         HomeScreen(
             state = HomeDataState(
                 title = state.title,
-                cardStores = state.cardStores
+                cardStores = state.cardStores ,
+                cardLastProduct = state.cardLastProduct
             )
         )
     }
@@ -172,5 +203,6 @@ fun HomeScreenPreviewLight(
 
 data class HomeDataState(
     val title:String,
-    val cardStores: List<Tienda>
+    val cardStores: List<Tienda>,
+    val cardLastProduct:List<LastProduct>
 )

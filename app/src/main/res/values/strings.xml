@@ -2,4 +2,5 @@
     <string name="app_name">inventoria_app</string>
     <string name="ver_tiendas">Ver Tiendas</string>
     <string name="ultimos_Productos">Ultimos Productos</string>
+    <string name="soculsales">Sucursal</string>
 </resources>

@@ -20,8 +20,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.produceState
 import com.mainframego.inventoria_app.data.InventarioLocalDataSrc
 import com.mainframego.inventoria_app.data.InventarioStockTotalDataSrc
+import com.mainframego.inventoria_app.data.LastProductDataSrc
 import com.mainframego.inventoria_app.data.TiendaDataSrc
 import com.mainframego.inventoria_app.domain.inventarioDetalle.InventarioDetalleTotalStock
+import com.mainframego.inventoria_app.domain.lastProduct.LastProduct
 import com.mainframego.inventoria_app.domain.tienda.Tienda
 import com.mainframego.inventoria_app.presentations.home.HomeDataState
 import com.mainframego.inventoria_app.presentations.home.HomeScreen
@@ -32,18 +34,21 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             InventoriaAppTheme {
-                val inventarioStockTotalDataSrc = InventarioStockTotalDataSrc
 
-                val data by produceState (initialValue = emptyList<Tienda>()) {
+                val dataStore by produceState (initialValue = emptyList<Tienda>()) {
                     value = TiendaDataSrc.getTiendas()//inventarioStockTotalDataSrc.getInventarioStockTotal()
                 }
+                val dataLastProduct by produceState(initialValue = emptyList<LastProduct>()) {
+                    value = LastProductDataSrc.getLasProduct()
+                }
 
-
+                println("Valores de dataLastProduct $dataLastProduct")
 
                 HomeScreen(
                     modifier = Modifier,
-                    state = HomeDataState(title = "Lista Socursales",
-                        cardStores = data
+                    state = HomeDataState(title = "Pagina Principal",
+                        cardStores = dataStore,
+                        cardLastProduct = dataLastProduct
 
                     )
                 )

@@ -14,5 +14,7 @@ data class LastProduct (
     @SerializedName("cdc_update")
     var cdc_update:String?,
     @SerializedName("inventario_id")
-    var inventario_id:Int?
+    var inventario_id:Int,
+    @SerializedName("producto_id")
+    var producto_id:Int
 )

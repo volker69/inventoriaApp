@@ -12,7 +12,7 @@ class LasrProductPreviewProvider:PreviewParameterProvider<LastProduct> {
                 stock = 4,
                 url_img = "",
                 cdc_update = null,
-                inventario_id = null
+                inventario_id = 1
             )
         )
 }

@@ -4,6 +4,6 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface LastProductServices {
-    @GET("/api/producto/last}")
+    @GET("producto/last")
     suspend fun getLasProduct():ArrayList<LastProduct>
 }
