@@ -15,5 +15,10 @@ object ProductoLocalDataSrc: ProductoServices {
         return response
     }
 
+    override suspend fun postProducto(producto: Producto): Producto {
+        val response = services.postProducto(producto)
+        return response
+    }
+
 
 }

@@ -45,7 +45,8 @@ val cardLastProduct = mutableListOf<LastProduct>()
                 talla = talla[index],
                 stock = stock[index],
                 url_img = "",
-                cdc_update = null
+                cdc_update = null,
+                producto_id = 1
             )
         )
 
