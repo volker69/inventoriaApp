@@ -1,5 +1,6 @@
 package com.mainframego.inventoria_app.data
 
+import com.mainframego.inventoria_app.Config.Conexion
 import com.mainframego.inventoria_app.domain.tienda.Tienda
 import com.mainframego.inventoria_app.domain.tienda.TiendaServices
 
